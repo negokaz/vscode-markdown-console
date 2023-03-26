@@ -1,0 +1,151 @@
+{
+  "name": "markdown-console",
+  "displayName": "Markdown Console (Preview)",
+  "description": "A documentation tool for semi-automatic operations",
+  "icon": "icon/icon.png",
+  "version": "0.1.6",
+  "publisher": "negokaz",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+      "url": "https://github.com/negokaz/vscode-markdown-console/issues",
+      "email": "negokaz@gmail.com"
+  },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/negokaz/vscode-markdown-console.git"
+  },
+  "homepage": "https://github.com/negokaz/vscode-markdown-console/blob/main/README.md",
+  "engines": {
+    "vscode": "^1.48.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:markdown-console.openPreviewToTheSide",
+    "onCommand:markdown-console.activateConsole",
+    "onCommand:markdown-console.editWithPreview"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+        {
+          "command": "markdown-console.openPreviewToTheSide",
+          "title": "Markdown Console: Open Preview to the Side",
+          "icon": {
+            "light": "./icon/ui/light/preview.svg",
+            "dark": "./icon/ui/dark/preview.svg"
+          }
+        },
+        {
+          "command": "markdown-console.activateConsole",
+          "title": "Markdown Console: Activate Console",
+          "icon": {
+            "light": "./icon/ui/light/activate-console.svg",
+            "dark": "./icon/ui/dark/activate-console.svg"
+          }
+        },
+        {
+          "command": "markdown-console.editWithPreview",
+          "title": "Markdown Console: Edit with preview"
+        }
+    ],
+    "menus": {
+        "editor/title": [
+          {
+            "command": "markdown-console.openPreviewToTheSide",
+            "when": "resourceFilename =~ /\\.con\\.md$/",
+            "group": "navigation"
+          },
+          {
+            "command": "markdown-console.activateConsole",
+            "when": "resourceFilename =~ /\\.con\\.md$/",
+            "group": "navigation"
+          }
+        ],
+        "explorer/context": [
+          {
+            "command": "markdown-console.editWithPreview",
+            "when": "resourceFilename =~ /\\.con\\.md$/",
+            "group": "navigation"
+          },
+          {
+            "command": "markdown-console.activateConsole",
+            "when": "resourceFilename =~ /\\.con\\.md$/",
+            "group": "navigation"
+          }
+        ]
+    },
+    "yamlValidation": [
+      {
+        "fileMatch": "markdown-console.yml",
+        "url": "./markdown-console-yaml-schema.json"
+      },
+      {
+        "fileMatch": "markdown-console_*.yml",
+        "url": "./markdown-console-yaml-schema.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "test-compile": "tsc -t es2015 -m commonjs -p ./",
+    "test-watch": "tsc -watch -p ./",
+    "pretest": "npm run test-compile && npm run lint",
+    "lint": "eslint . --ext ts --ext tsx",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/eslint": "^7.29.0",
+    "@types/glob": "^7.1.3",
+    "@types/less": "^3.0.3",
+    "@types/markdown-it": "^12.2.3",
+    "@types/mocha": "^8.0.4",
+    "@types/node": "^12.11.7",
+    "@types/vscode": "^1.32.0",
+    "@types/vscode-webview": "^1.57.1",
+    "@types/which": "^2.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "@vscode/test-electron": "^1.5.0",
+    "babel-loader": "^9.1.2",
+    "css-loader": "^6.7.3",
+    "css-minimizer-webpack-plugin": "^4.2.2",
+    "eslint": "^7.19.0",
+    "glob": "^7.1.6",
+    "less": "^4.1.3",
+    "less-loader": "^11.1.0",
+    "mini-css-extract-plugin": "^2.7.2",
+    "mocha": "^8.2.1",
+    "node-pty": "0.11.0-beta27",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^8.0.14",
+    "tsconfig-paths-webpack-plugin": "^4.0.0",
+    "typescript": "^4.1.3",
+    "vsce": "^2.15.0",
+    "webpack": "^5.19.0",
+    "webpack-cli": "^4.4.0"
+  },
+  "dependencies": {
+    "@preact/signals": "^1.1.3",
+    "fast-glob": "^3.2.12",
+    "highlight.js": "^11.7.0",
+    "iconv-lite": "^0.6.3",
+    "lowdb": "^5.1.0",
+    "markdown-it": "^13.0.1",
+    "merge-anything": "^5.1.4",
+    "micromustache": "^8.0.3",
+    "preact": "^10.11.3",
+    "preact-render-to-string": "^5.2.6",
+    "really-relaxed-json": "^0.3.2",
+    "rxjs": "^7.8.0",
+    "which": "^3.0.0",
+    "xterm": "^5.1.0",
+    "xterm-addon-fit": "^0.7.0",
+    "xterm-addon-serialize": "^0.9.0",
+    "yaml": "^2.2.1"
+  }
+}

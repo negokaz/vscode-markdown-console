@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15, custom)"
+   sodipodi:docname="preview.svg"
+   id="svg96"
+   version="1.1"
+   width="16"
+   height="16">
+  <defs
+     id="defs100" />
+  <sodipodi:namedview
+     inkscape:current-layer="svg96"
+     inkscape:window-maximized="0"
+     inkscape:window-y="0"
+     inkscape:window-x="893"
+     inkscape:cy="7.4963823"
+     inkscape:cx="7.8357925"
+     inkscape:zoom="51.013263"
+     showguides="false"
+     showgrid="true"
+     id="namedview98"
+     inkscape:window-height="1360"
+     inkscape:window-width="1638"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     inkscape:document-rotation="0"
+     bordercolor="#666666"
+     pagecolor="#999999">
+    <inkscape:grid
+       id="grid226"
+       type="xygrid" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata88">IcoFont Icons<rdf:RDF>
+  <cc:Work
+     rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type
+       rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+    <dc:title>preview</dc:title>
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+  <title
+     id="title90">preview</title>
+  <glyph
+     id="glyph92"
+     horiz-adv-x="1000"
+     unicode=""
+     glyph-name="ui-play" />
+  <path
+     id="path25"
+     style="fill:#4d4d4d;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.044;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 1.9082031,0.80078125 0.80078125,1.7851562 V 12.615234 l 1.10742185,0.984375 4.7270298,0 0.035493,-0.960937 -4.7625228,-0.02344 V 1.7851562 L 8,1.8242188 V 11.2 L 8.8,10.4 8.8007812,1.7890625 H 14.111328 V 6.4003906 L 15.199219,6.921875 V 1.7851562 L 14.091797,0.80078125 Z"
+     sodipodi:nodetypes="cccccccccccccccccc" />
+  <path
+     style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#4d4d4d;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.619175;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate;stop-color:#000000"
+     d="M 13.870825,6.741091 C 13.374666,6.71191 12.835583,6.9080394 12.419635,7.3239867 L 7.2110696,12.514411 a 0.61923653,0.61923653 0 0 0 -0.1826075,0.438985 v 1.857523 a 0.61923653,0.61923653 0 0 0 0.6191746,0.619175 h 1.857524 A 0.61923653,0.61923653 0 0 0 9.9441454,15.247486 L 15.13457,10.038921 C 15.550517,9.6229754 15.746652,9.0838904 15.717466,8.5877306 15.688276,8.0915719 15.461734,7.6511478 15.13457,7.3239867 14.807408,6.9968241 14.366984,6.7702777 13.870825,6.741091 Z m -0.07255,1.2359309 c 0.155135,0.0092 0.328177,0.089947 0.460754,0.2225155 0.132568,0.1325754 0.21339,0.3056182 0.222514,0.460754 0.0091,0.1551347 -0.02548,0.3048346 -0.222514,0.5018697 a 0.61923653,0.61923653 0 0 0 -0.0012,0.00116 L 9.2475747,14.191703 H 8.2668114 V 13.21094 L 13.295186,8.200705 a 0.61923653,0.61923653 0 0 0 0.0012,-0.00116 C 13.493461,8.0025033 13.64316,7.9678982 13.798295,7.9770241 Z"
+     id="path6" />
+  <path
+     style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#4d4d4d;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.619175;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate;stop-color:#000000"
+     d="m 12,8 a 0.61917461,0.61917461 0 0 0 -0.455916,0.1813988 0.61917461,0.61917461 0 0 0 0,0.8755507 l 1.857524,1.8575245 a 0.61917461,0.61917461 0 0 0 0.87555,0 0.61917461,0.61917461 0 0 0 0,-0.875553 L 12.419635,8.1813988 A 0.61917461,0.61917461 0 0 0 12,8 Z"
+     id="path8" />
+</svg>

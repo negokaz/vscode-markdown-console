@@ -1,0 +1,37 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "env": {
+            "type": "object",
+            "description": "Environment variables set for the process which is executed.",
+            "uniqueItems": true,
+            "propertyNames": {
+                "pattern": "^[a-zA-Z0-9_]+$"
+            },
+            "additionalProperties": {
+                "anyOf": [
+                    {
+                        "type": "string",
+                        "description": "An environment variable."
+                    },
+                    {
+                        "type": "array",
+                        "items": { "type": "string" },
+                        "description": "An environment variable defined in an array. The items are concatenated into a single string without any delimiters.",
+                        "additionalItems": false
+                    }
+                ]
+            }
+        },
+        "variable": {
+            "type": "object",
+            "description": "Variables that are embedded in markdown text.",
+            "uniqueItems": true,
+            "propertyNames": {
+                "pattern": "^[a-zA-Z0-9_]+$"
+            }
+        }
+    }
+}

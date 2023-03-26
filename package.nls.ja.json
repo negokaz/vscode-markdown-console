@@ -1,0 +1,12 @@
+{
+    "edit": "編集",
+    "activate-console": "コンソールを有効化",
+    "save-snapshot": "スナップショット (html) を保存",
+    "run": "Run",
+    "retry": "Retry",
+    "stop": "Stop",
+    "copy": "Copy",
+    "open-snapshot": "開く",
+    "open-snapshot-folder": "フォルダを開く",
+    "save-a-snapshot-was-successful": "スナップショット (HTML) の保存に成功しました。"
+}

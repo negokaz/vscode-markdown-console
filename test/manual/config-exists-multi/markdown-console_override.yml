@@ -1,0 +1,6 @@
+env:
+    TEST: override
+
+variable:
+    buzz:
+        bbb: b2

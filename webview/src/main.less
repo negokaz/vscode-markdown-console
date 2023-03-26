@@ -1,0 +1,30 @@
+:root {
+    --mdconsole-color-unknown: #9e9e9e;
+    --mdconsole-color-success: #4caf50;
+    --mdconsole-color-failure: #f44336;
+
+    --mdconsole-foreground: var(--vscode-editor-foreground);
+    --mdconsole-background: var(--vscode-editor-background);
+    --mdconsole-menu-border: var(--vscode-panel-border);
+    --mdconsole-dark-code-background: rgba(10, 10, 10, 0.4);
+    --mdconsole-light-code-background: rgba(220, 220, 220, 0.4);
+    --mdconsole-snippet-label-background: var(--vscode-menubar-selectionBackground);
+    --mdconsole-unavailable-snippet-label-background: var(--mdconsole-color-failure);
+    --mdconsole-button-hover-background: var(--vscode-toolbar-hoverBackground);
+    --mdconsole-label-tag-background: var(--vscode-toolbar-hoverBackground);
+    --mdconsole-highlighted-button-foreground: var(--vscode-button-foreground);
+    --mdconsole-highlighted-button-background: var(--vscode-button-background);
+    --mdconsole-highlighted-button-hover-background: var(--vscode-button-hoverBackground);
+}
+
+.hljs {
+    background-color: initial;
+}
+
+@import "markdown";
+@import "button";
+@import "icon";
+@import "menu";
+@import "snippet";
+@import "codeblock";
+@import "tabler-icons-subset-v1.0/style";

@@ -1,0 +1,147 @@
+.snippet {
+    background-color: var(--mdconsole-code-background);
+    border-left: solid 0.5rem var(--mdconsole-color-unknown);
+	border-radius: 3px;
+    margin: 1rem 0;
+    padding: 0 0.7rem 0.7rem 0.7rem;
+    
+    pre {
+        background-color: transparent;
+        margin: 0;
+        padding-left: 0;
+    }
+}
+
+.vscode-light .snippet {
+    background-color: var(--mdconsole-light-code-background);
+}
+
+.vscode-dark .snippet {
+    background-color: var(--mdconsole-dark-code-background);
+}
+
+.snippet.running {
+    border-left-color: var(--mdconsole-color-success);
+    animation: running-border 1s linear infinite;
+}
+
+@keyframes running-border {
+    0%, 100% {
+        border-color: transparent;
+    }
+    50% {
+        border-color: var(--mdconsole-color-unknown);
+    }
+}
+
+.snippet.succeeded {
+    border-left-color: var(--mdconsole-color-success);
+
+    .icon-check {
+        color: var(--mdconsole-color-success);
+    }
+}
+
+.snippet.failed {
+    border-left-color: var(--mdconsole-color-failure);
+    
+    .icon-x {
+        color: var(--mdconsole-color-failure);
+    }
+}
+
+.snippet-header {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.snippet-label {
+    width: fit-content;
+    background-color: var(--mdconsole-snippet-label-background);
+    padding: 0.2rem 0.4rem;
+
+    .tag {
+        line-height: 110%;
+        vertical-align: middle;
+        padding: 0 0.3rem;
+        border-radius: 0.2rem;
+        background-color: var(--mdconsole-label-tag-background);
+        margin-right: 0.4rem;
+    }
+
+    code {
+        vertical-align: middle;
+        color: var(--mdconsole-foreground);
+    }
+}
+
+.unavailable-snippet-label {
+    background-color: var(--mdconsole-unavailable-snippet-label-background);
+}
+
+.snippet-control {
+    display: flex;
+    margin-left: auto;
+}
+
+.snippet-control > * {
+    margin-left: 0.5rem;
+}
+
+.terminal-root {
+    // fix height to prevent xterm resize
+    height: 20rem;
+    overflow: auto;
+
+    // xterm serialized content
+    &> pre {
+        padding: 0;
+        height: 100%;
+        &> div {
+            width: fit-content;
+            min-height: 100%;
+            min-width: 100%;
+        }
+    }
+}
+
+.snippet.init .terminal-outer {
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.snippet:not(.init) .terminal-outer {
+    height: 20rem;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.1s linear 0ms;
+}
+
+.exit-status {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 0.2rem;
+    height: 1em;
+
+    .exit-code {
+        width: 5em;
+    }
+
+    .time-span {
+        opacity: 0.7;
+        abbr {
+            text-decoration: none;
+        }
+
+        .icon-chevrons-right {
+            padding: 0 0.2em;
+            font-size: 80%;
+        }
+
+        .elapsed-time {
+            margin: 0 0.2em;
+        }
+    }
+}

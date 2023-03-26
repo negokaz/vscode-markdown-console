@@ -1,0 +1,40 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "@typescript-eslint/naming-convention": "warn",
+        "@typescript-eslint/semi": "warn",
+        "curly": "warn",
+        "eqeqeq": "warn",
+        "no-throw-literal": "warn",
+        "semi": "off"
+    },
+    "overrides": [
+        {
+            "files": ["webpack.config.js"],
+            "rules": {
+                "@typescript-eslint/naming-convention": [
+                    "warn",
+                    { "selector": "variable", "format": ["PascalCase", "camelCase"] }
+                ]
+            }
+        },
+        {
+            "files": ["*.ts", "*.tsx"],
+            "rules": {
+                "@typescript-eslint/naming-convention": [
+                    "warn",
+                    { "selector": "variable", "modifiers": ["exported"], "format": ["PascalCase", "camelCase"] },
+                    { "selector": "function", "modifiers": ["exported"], "format": ["PascalCase", "camelCase"] }
+                ]
+            }
+        }
+    ]
+}

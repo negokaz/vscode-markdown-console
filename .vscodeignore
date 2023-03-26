@@ -1,0 +1,7 @@
+**/*
+!dist/
+!docs/
+!icon/
+!markdown-console-yaml-schema.json
+!LICENSE
+!README.md

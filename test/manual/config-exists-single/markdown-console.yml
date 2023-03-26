@@ -1,0 +1,19 @@
+env: 
+    PATH:
+        - "C:/Program Files/Git/bin;"
+        - "C:/Program Files/Git/usr/bin;"
+        - "C:/Program Files/Git/mingw64/bin;"
+        - "C:/Program Files/Git/mingw64/libexec/git-core;"
+        - "{{MDCON_BASE_DIR}}/bin;"
+        - "{{PATH}}"
+    DISPLAY: _
+    SSH_ASKPASS: git-gui--askpass
+    TEST_MDCON_BASE_DIR: "{{MDCON_BASE_DIR}}"
+    TEST_MDCON_WORKING_DIR: "{{MDCON_WORKING_DIR}}"
+
+variable:
+    fizz: Hello, World!
+    buzz:
+        aaa: 1
+        bbb: 2
+        ccc: 3

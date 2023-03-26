@@ -1,0 +1,12 @@
+{
+    "edit": "Edit",
+    "activate-console": "Activate Console",
+    "save-snapshot": "Save Snapshot (html)",
+    "run": "Run",
+    "retry": "Retry",
+    "stop": "Stop",
+    "copy": "Copy",
+    "open-snapshot": "Open",
+    "open-snapshot-folder": "Open Folder",
+    "save-a-snapshot-was-successful": "Saving a snapshot (HTML) was successful."
+}

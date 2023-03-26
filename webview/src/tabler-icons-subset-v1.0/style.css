@@ -1,0 +1,75 @@
+@font-face {
+  font-family: 'tabler-icons-subset';
+  src:  url('fonts/tabler-icons-subset.eot?u38rhr');
+  src:  url('fonts/tabler-icons-subset.eot?u38rhr#iefix') format('embedded-opentype'),
+    url('fonts/tabler-icons-subset.ttf?u38rhr') format('truetype'),
+    url('fonts/tabler-icons-subset.woff?u38rhr') format('woff'),
+    url('fonts/tabler-icons-subset.svg?u38rhr#tabler-icons-subset') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'tabler-icons-subset' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-chevrons-right:before {
+  content: "\e90f";
+}
+.icon-clock:before {
+  content: "\e90e";
+}
+.icon-x:before {
+  content: "\e900";
+}
+.icon-exclamation-circle:before {
+  content: "\e901";
+}
+.icon-terminal-2:before {
+  content: "\e902";
+}
+.icon-alert-triangle:before {
+  content: "\e903";
+}
+.icon-refresh:before {
+  content: "\e904";
+}
+.icon-rotate-clockwise:before {
+  content: "\e905";
+}
+.icon-circle-x:before {
+  content: "\e906";
+}
+.icon-check:before {
+  content: "\e907";
+}
+.icon-circle-check:before {
+  content: "\e908";
+}
+.icon-edit:before {
+  content: "\e909";
+}
+.icon-camera:before {
+  content: "\e90a";
+}
+.icon-copy:before {
+  content: "\e90b";
+}
+.icon-player-stop-filled:before {
+  content: "\e90c";
+}
+.icon-player-play-filled:before {
+  content: "\e90d";
+}

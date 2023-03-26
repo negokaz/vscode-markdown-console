@@ -1,0 +1,43 @@
+.button {
+
+    color: var(--mdconsole-foreground);
+
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0.3rem;
+    border-radius: 0.2rem;
+
+    &.button-disabled {
+        color: var(--mdconsole-foreground);
+        opacity: 0.8;
+    }
+}
+
+a.button {
+    // disable link styles
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+
+    &:hover {
+        background-color: var(--mdconsole-button-hover-background);
+        color: var(--mdconsole-foreground);
+    }
+
+    &:active {
+        color: var(--mdconsole-highlighted-button-foreground);
+    }
+}
+
+a.button.highlight {
+
+    color: var(--mdconsole-highlighted-button-foreground);
+
+    background-color: var(--mdconsole-highlighted-button-background);
+    
+    &:hover {
+        background-color: var(--mdconsole-highlighted-button-hover-background);
+    }
+}
