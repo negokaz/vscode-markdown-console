@@ -1,6 +1,5 @@
 import { Adapter } from 'lowdb';
 import { TextFile } from 'lowdb/node';
-import * as yaml from 'yaml';
 
 export type LogSchema = 
     Map<string, LogEntry>;
@@ -25,7 +24,7 @@ export type LogRawEntry = {
     exitCode: number,
 };
 
-export class LogYamlAdapter implements Adapter<LogSchema> {
+export class LogJsonAdapter implements Adapter<LogSchema> {
 
     private readonly adapter: Adapter<string>;
 
@@ -36,8 +35,8 @@ export class LogYamlAdapter implements Adapter<LogSchema> {
     public async read(): Promise<LogSchema | null> {
         const data = await this.adapter.read();
         if (data) {
-            const parsed: any = yaml.parse(data);
-            const decoded = Array.from(Object.entries(parsed)).map(([key, value]) => {
+            const parsed: [string, LogRawEntry][] = JSON.parse(data);
+            const decoded = parsed.map(([key, value]) => {
                 return [key, this.decode(value as LogRawEntry)] as [string, LogEntry];
             });
             return new Map(decoded);
@@ -50,10 +49,7 @@ export class LogYamlAdapter implements Adapter<LogSchema> {
         const encoded = Array.from(data.entries()).map(([key, value]) => {
             return [key, this.encode(value)] as [string, LogRawEntry];
         });
-        return this.adapter.write(yaml.stringify(new Map(encoded), {
-            lineWidth: 0, // disable wrapping
-            doubleQuotedMinMultiLineLength: 0,
-        }));
+        return this.adapter.write(JSON.stringify(encoded));
     }
 
     private encode(logEntry: LogEntry): LogRawEntry {

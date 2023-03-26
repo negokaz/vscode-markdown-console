@@ -1,6 +1,6 @@
 import { Config } from "../config/config";
 import { Low } from 'lowdb';
-import { LogEntry, LogSchema, LogYamlAdapter } from './logYamlAdapter';
+import { LogEntry, LogSchema, LogJsonAdapter } from './logJsonAdapter';
 import { promises as fs } from 'fs';
 import * as path from 'path';
 
@@ -8,7 +8,7 @@ export class LogStorage {
 
     public static async load(config: Config): Promise<LogStorage> {
         await fs.mkdir(path.dirname(config.dbUri.fsPath), { recursive: true });
-        const db = new Low(new LogYamlAdapter(config.dbUri.fsPath));
+        const db = new Low(new LogJsonAdapter(config.dbUri.fsPath));
         await db.read();
         if (!db.data) {
             db.data = new Map();
