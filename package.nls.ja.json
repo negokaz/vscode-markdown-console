@@ -8,5 +8,6 @@
     "copy": "Copy",
     "open-snapshot": "開く",
     "open-snapshot-folder": "フォルダを開く",
-    "save-a-snapshot-was-successful": "スナップショット (HTML) の保存に成功しました。"
+    "save-a-snapshot-was-successful": "スナップショット (HTML) の保存に成功しました。",
+    "this-file-was-generated-by-markdown-console": "このファイルは <a href=\"https://marketplace.visualstudio.com/items?itemName=negokaz.markdown-console\">Markdown Console</a> によって生成されました"
 }

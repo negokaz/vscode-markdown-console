@@ -233,6 +233,9 @@ export class ConsoleViewController extends vscode.Disposable {
             </head>
             <body class="${HtmlUtil.escapeHtml(event.bodyClassList.join(' '))}">
                 ${await body}
+                <div id="snapshot-file-annotation">
+                    <small>${this.messages.get('this-file-was-generated-by-markdown-console')}</small>
+                </div>
             </body>
         </html>
         `;
