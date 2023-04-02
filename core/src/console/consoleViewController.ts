@@ -170,10 +170,10 @@ export class ConsoleViewController extends vscode.Disposable {
 
     private async generateWebviewPreviewContent(): Promise<string> {
         const tokens = await this.parseMarkdown(this.document.getText());
-        const body = await this.markdownEngine.renderWebview(tokens);
+        const renderingResult = await this.markdownEngine.renderWebview(tokens);
         this.snippetManager = await SnippetManager.initialize(tokens, this.config);
         return `<!DOCTYPE html>
-        <html>
+        <html class="webview">
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -183,7 +183,14 @@ export class ConsoleViewController extends vscode.Disposable {
             <body class="console-${this.mode}">
                 <div id="menu-margin"></div>
                 <div id="menu"></div>
-                ${body}
+                <div id="content">
+                    <div id="console-main">
+                        ${renderingResult.bodyHtml}
+                    </div>
+                    <div id="console-sidebar">
+                        ${renderingResult.tocHtml}
+                    </div>
+                </div>
             </body>
         </html>
         `;
@@ -220,7 +227,7 @@ export class ConsoleViewController extends vscode.Disposable {
         const tokens = await this.parseMarkdown(this.document.getText());
         const cssUri = vscode.Uri.file(path.join(this.context.extensionPath, 'dist', 'webview', 'main.css'));
         const css = fs.readFile(cssUri.fsPath);
-        const body = this.markdownEngine.renderSnapshot(tokens);
+        const renderingResult = await this.markdownEngine.renderSnapshot(tokens);
         return `
         <!DOCTYPE html>
         <html style="${HtmlUtil.escapeHtml(event.style)}">
@@ -232,7 +239,7 @@ export class ConsoleViewController extends vscode.Disposable {
                 </style>
             </head>
             <body class="${HtmlUtil.escapeHtml(event.bodyClassList.join(' '))}">
-                ${await body}
+                ${renderingResult.bodyHtml}
                 <div id="snapshot-file-annotation">
                     <small>${this.messages.get('this-file-was-generated-by-markdown-console')}</small>
                 </div>

@@ -1,0 +1,27 @@
+nav.table-of-contents {
+    position: sticky;
+    margin: 0.5rem;
+
+    a {
+        color: var(--mdconsole-foreground);
+    }
+
+    ol {
+        padding-inline-start: 0.5rem;
+    }
+
+    li {
+        list-style-type: none;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    li, li > a {
+        color: var(--mdconsole-disabled-foreground);
+    }
+
+    .visible, .visible > a {
+        color: var(--mdconsole-foreground);
+    }
+}

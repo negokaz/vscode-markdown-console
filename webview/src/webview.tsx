@@ -91,14 +91,20 @@ window.addEventListener('load', () => {
         }
     });
 
-    const uriShemePattern = /^[a-zA-Z][a-zA-Z0-9+.-]*:/;
+    /**
+     * URI: handle by webview native 
+     * Ancher: handle by webview native 
+     * Absolute path: open in vscode
+     * Relative path: open in vscode
+     */
+    const webUrlPattern = /^(([a-zA-Z][a-zA-Z0-9+.-]*:)|(#))/;
     Array.from(document.querySelectorAll('a'))
         .filter(elem => elem.href)
         .forEach(elem => {
             // elem.href returns vscode-webview: scheme URI instead of raw path
             const href = elem.getAttribute('href');
             if (href) {
-                if (!uriShemePattern.test(href)) {
+                if (!webUrlPattern.test(href)) {
                     // open link on vscode if the href points local file path
                     elem.addEventListener('click', event => {
                         event.preventDefault();
@@ -176,4 +182,45 @@ window.addEventListener('load', () => {
             console.error('unhandled', event.data);
         }
     });
+
+    const tocItems = Array.from(document.querySelectorAll('nav.table-of-contents li')).map(e => {
+        const anchor = e.querySelector('a')?.getAttribute('href')?.substring(1);
+        if (anchor) {
+            const target = document.getElementById(anchor);
+            if (target) {
+                return {
+                    listItem: e,
+                    target: target,
+                };
+            }
+        }
+        throw new Error('invalid toc item');
+    });
+
+    const decorateTocItems = () => {
+        const windowTop = 100;
+        const windowBottom = window.innerHeight - 100;
+        tocItems.map((item, index) =>  {
+            const itemTop = 
+                item.target.getBoundingClientRect().top;
+            const itemBottom = // calc by top of next item
+                (index + 1 < tocItems.length)
+                    ? tocItems[index + 1].target.getBoundingClientRect().top
+                    : document.documentElement.scrollHeight;
+            const visible = 
+                (windowTop < itemTop && itemTop < windowBottom) || // top of target is visible
+                (windowTop < itemBottom  && itemBottom < windowBottom) || // bottom of target is visible
+                (itemTop <= windowTop && windowBottom <= itemBottom); // target is partially or entirely visible
+            if (visible) {
+                item.listItem.classList.add('visible');
+            } else {
+                item.listItem.classList.remove('visible');
+            }
+        });
+    };
+    decorateTocItems();
+    new ResizeObserver(decorateTocItems).observe(document.body);
+    window.addEventListener('resize', decorateTocItems);
+    window.addEventListener('scroll', decorateTocItems);
+
 });

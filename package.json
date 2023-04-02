@@ -7,12 +7,12 @@
   "publisher": "negokaz",
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
-      "url": "https://github.com/negokaz/vscode-markdown-console/issues",
-      "email": "negokaz@gmail.com"
+    "url": "https://github.com/negokaz/vscode-markdown-console/issues",
+    "email": "negokaz@gmail.com"
   },
   "repository": {
-      "type": "git",
-      "url": "https://github.com/negokaz/vscode-markdown-console.git"
+    "type": "git",
+    "url": "https://github.com/negokaz/vscode-markdown-console.git"
   },
   "homepage": "https://github.com/negokaz/vscode-markdown-console/blob/main/README.md",
   "engines": {
@@ -29,52 +29,52 @@
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
+      {
+        "command": "markdown-console.openPreviewToTheSide",
+        "title": "Markdown Console: Open Preview to the Side",
+        "icon": {
+          "light": "./icon/ui/light/preview.svg",
+          "dark": "./icon/ui/dark/preview.svg"
+        }
+      },
+      {
+        "command": "markdown-console.activateConsole",
+        "title": "Markdown Console: Activate Console",
+        "icon": {
+          "light": "./icon/ui/light/activate-console.svg",
+          "dark": "./icon/ui/dark/activate-console.svg"
+        }
+      },
+      {
+        "command": "markdown-console.editWithPreview",
+        "title": "Markdown Console: Edit with preview"
+      }
+    ],
+    "menus": {
+      "editor/title": [
         {
           "command": "markdown-console.openPreviewToTheSide",
-          "title": "Markdown Console: Open Preview to the Side",
-          "icon": {
-            "light": "./icon/ui/light/preview.svg",
-            "dark": "./icon/ui/dark/preview.svg"
-          }
+          "when": "resourceFilename =~ /\\.con\\.md$/",
+          "group": "navigation"
         },
         {
           "command": "markdown-console.activateConsole",
-          "title": "Markdown Console: Activate Console",
-          "icon": {
-            "light": "./icon/ui/light/activate-console.svg",
-            "dark": "./icon/ui/dark/activate-console.svg"
-          }
-        },
+          "when": "resourceFilename =~ /\\.con\\.md$/",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
         {
           "command": "markdown-console.editWithPreview",
-          "title": "Markdown Console: Edit with preview"
+          "when": "resourceFilename =~ /\\.con\\.md$/",
+          "group": "navigation"
+        },
+        {
+          "command": "markdown-console.activateConsole",
+          "when": "resourceFilename =~ /\\.con\\.md$/",
+          "group": "navigation"
         }
-    ],
-    "menus": {
-        "editor/title": [
-          {
-            "command": "markdown-console.openPreviewToTheSide",
-            "when": "resourceFilename =~ /\\.con\\.md$/",
-            "group": "navigation"
-          },
-          {
-            "command": "markdown-console.activateConsole",
-            "when": "resourceFilename =~ /\\.con\\.md$/",
-            "group": "navigation"
-          }
-        ],
-        "explorer/context": [
-          {
-            "command": "markdown-console.editWithPreview",
-            "when": "resourceFilename =~ /\\.con\\.md$/",
-            "group": "navigation"
-          },
-          {
-            "command": "markdown-console.activateConsole",
-            "when": "resourceFilename =~ /\\.con\\.md$/",
-            "group": "navigation"
-          }
-        ]
+      ]
     },
     "yamlValidation": [
       {
@@ -136,6 +136,8 @@
     "iconv-lite": "^0.6.3",
     "lowdb": "^5.1.0",
     "markdown-it": "^13.0.1",
+    "markdown-it-anchor": "^8.6.7",
+    "markdown-it-toc-done-right": "^4.2.0",
     "merge-anything": "^5.1.4",
     "micromustache": "^8.0.3",
     "preact": "^10.11.3",

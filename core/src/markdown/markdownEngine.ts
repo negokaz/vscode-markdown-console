@@ -1,5 +1,7 @@
 import MarkdownIt = require("markdown-it");
 import Token = require("markdown-it/lib/token");
+import markdownItAnchor from "markdown-it-anchor";
+import markdownItTocDoneRight from "markdown-it-toc-done-right";
 import { MarkdownEngineEnv } from "./markdownEngineEnv";
 import { markdownItSnippet } from "./plugin/markdownItSnippet";
 import * as crypto from 'crypto';
@@ -17,6 +19,11 @@ type SettingsSchema = {
     encoding: string | undefined,
     stdin: boolean | undefined,
     tty: boolean | undefined,
+};
+
+type RenderingResult = {
+    bodyHtml: string,
+    tocHtml: string,
 };
 
 export class MarkdownEngine {
@@ -55,6 +62,8 @@ export class MarkdownEngine {
         });
         this.md.use(markdownItSnippet());
         this.md.use(markdownVscResourceImage(this.config));
+        this.md.use(markdownItAnchor);
+        this.md.use(markdownItTocDoneRight, { placeholder: '' });
         this.webviewEnv = new MarkdownEngineEnv(new UiState(), logStorage, 'webview');
         this.snapshotEnv = new MarkdownEngineEnv(new UiState(), logStorage, 'snapshot');
     }
@@ -64,14 +73,30 @@ export class MarkdownEngine {
         return this.decorateTokens(tokens);
     }
 
-    public async renderWebview(tokens: Token[]): Promise<string> {
-        const html = this.md.renderer.render(tokens, this.md.options, this.webviewEnv);
-        return html;
+    public async renderWebview(tokens: Token[]): Promise<RenderingResult> {
+        return {
+            bodyHtml: this.md.renderer.render(tokens, this.md.options, this.webviewEnv),
+            tocHtml: this.generateToc(this.webviewEnv),
+        };
     }
 
-    public async renderSnapshot(tokens: Token[]): Promise<string> {
-        const html = this.md.renderer.render(tokens, this.md.options, this.snapshotEnv);
-        return html;
+    public async renderSnapshot(tokens: Token[]): Promise<RenderingResult> {
+        return {
+            bodyHtml: this.md.renderer.render(tokens, this.md.options, this.snapshotEnv),
+            tocHtml: this.generateToc(this.snapshotEnv),
+        };
+    }
+
+    private generateToc(env: MarkdownEngineEnv): string {
+        if (this.md.renderer.rules.tocOpen && this.md.renderer.rules.tocBody && this.md.renderer.rules.tocClose) {
+            const toc = 
+                this.md.renderer.rules.tocOpen([], -1, this.md.options, env, this.md.renderer) + 
+                this.md.renderer.rules.tocBody([], -1, this.md.options, env, this.md.renderer) + 
+                this.md.renderer.rules.tocClose([], -1, this.md.options, env, this.md.renderer);
+            return toc;
+        } else {
+            throw new Error('markdown-it-toc-done-right unavailable: generating TOC requires markdown-it-toc-done-right');
+        }
     }
 
     private async decorateTokens(tokens: Token[]): Promise<Token[]> {

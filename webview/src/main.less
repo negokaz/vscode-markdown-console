@@ -4,6 +4,7 @@
     --mdconsole-color-failure: #f44336;
 
     --mdconsole-foreground: var(--vscode-editor-foreground);
+    --mdconsole-disabled-foreground: var(--vscode-disabledForeground);
     --mdconsole-background: var(--vscode-editor-background);
     --mdconsole-textLink-foreground: var(--vscode-textLink-foreground);
     --mdconsole-menu-border: var(--vscode-panel-border);
@@ -22,11 +23,38 @@
     background-color: initial;
 }
 
+#content {
+    display: flex;
+}
+#console-main {
+    overflow-wrap: break-word;
+}
+
+@media screen and (min-width: 900px) {
+    #console-main {
+        width: calc(100% - 250px);
+    }
+    
+    #console-sidebar {
+        width: 250px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #console-main {
+        width: 100%;
+    }
+    #console-sidebar {
+        display: none;
+    }
+}
+
 @import "markdown";
 @import "snapshot";
 @import "button";
 @import "icon";
 @import "menu";
+@import "toc";
 @import "snippet";
 @import "codeblock";
 @import "tabler-icons-subset-v1.0/style";
