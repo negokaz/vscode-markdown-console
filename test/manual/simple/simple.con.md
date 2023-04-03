@@ -65,7 +65,7 @@ function main() {
 2. にばんめ
 3. さんばんめ
 
-### 表
+## 表
 
 | name  | age |
 | ------- | -- |
@@ -73,28 +73,28 @@ function main() {
 | Bob     | 12 |
 | Charlie | 13 |
 
-### リンク
+## リンク
 
-**ローカルファイル**
+### ローカルファイル
 
 - [タイトル無しリンク](./)
 - [タイトル無しリンク](./test.con.md)
 - [タイトル付きリンク](./basics.md "基本的な使い方")
 
-**外部 URL**
+### 外部 URL
 
 - [タイトル無しリンク](http://example.com)
 - [タイトル付きリンク](http://example.com "タイトルの例")
 - 自動リンク: http://example.com
 
 
-### 画像
+## 画像
 
-**ローカルファイル**
+### ローカルファイル
 
 ![local](./images/computer_screen_programming.png)
 
-**外部 URL**
+### 外部 URL
 
 ![bg_network_dennou_sekai.jpg](https://3.bp.blogspot.com/-vF3FmP68kSY/WvQG-YjKKAI/AAAAAAABL3Q/vN_Pn4XbznQfUfzJl_R3eSurBJYGxun0QCLcBGAs/s600/bg_network_dennou_sekai.jpg)
 
