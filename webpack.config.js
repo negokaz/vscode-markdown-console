@@ -122,7 +122,44 @@ const webview = {
   }
 };
 
+/**@type {import('webpack').Configuration}*/
+const snapshot = {
+  target: 'web',
+  mode: 'none',
+  entry: [
+    './snapshot/src/snapshot.tsx',
+  ],
+  output: {
+      // the bundle is stored in the 'dist' folder (check package.json), 📖 -> https://webpack.js.org/configuration/output/
+      path: path.resolve(__dirname, 'dist', 'snapshot'),
+      filename: 'snapshot.js',
+  },
+  devtool: 'source-map',
+  resolve: {
+    // support reading TypeScript and JavaScript files, 📖 -> https://github.com/TypeStrong/ts-loader
+    extensions: ['.ts', '.tsx', '.js'],
+    plugins: [new TsconfigPathsPlugin({ configFile: path.resolve(__dirname, 'snapshot', 'tsconfig.json') })],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              configFile: path.resolve(__dirname, 'snapshot', 'tsconfig.json'),
+            },
+          },
+        ]
+      },
+    ]
+  },
+};
+
 module.exports = [
     extension,
     webview,
+    snapshot,
 ];

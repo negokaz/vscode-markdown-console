@@ -227,6 +227,8 @@ export class ConsoleViewController extends vscode.Disposable {
         const tokens = await this.parseMarkdown(this.document.getText());
         const cssUri = vscode.Uri.file(path.join(this.context.extensionPath, 'dist', 'webview', 'main.css'));
         const css = fs.readFile(cssUri.fsPath);
+        const scriptUri = vscode.Uri.file(path.join(this.context.extensionPath, 'dist', 'snapshot', 'snapshot.js'));
+        const script = fs.readFile(scriptUri.fsPath);
         const renderingResult = await this.markdownEngine.renderSnapshot(tokens);
         return `
         <!DOCTYPE html>
@@ -234,12 +236,22 @@ export class ConsoleViewController extends vscode.Disposable {
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <script>
+                    ${await script}
+                </script>
                 <style>
                     ${await css}
                 </style>
             </head>
             <body class="${HtmlUtil.escapeHtml(event.bodyClassList.join(' '))}">
-                ${renderingResult.bodyHtml}
+                <div id="content">
+                    <div id="console-main">
+                        ${renderingResult.bodyHtml}
+                    </div>
+                    <div id="console-sidebar">
+                        ${renderingResult.tocHtml}
+                    </div>
+                </div>
                 <div id="snapshot-file-annotation">
                     <small>${this.messages.get('this-file-was-generated-by-markdown-console')}</small>
                 </div>

@@ -15,6 +15,7 @@ import { SerializeAddon } from 'xterm-addon-serialize';
 import { MessageContext, Mode, ModeContext } from '@ui/model/context';
 import { Menu } from '@ui/components/menu';
 import { Messages } from '@ui/i18n/messages';
+import { setupTocTo } from '@ui/toc/toc';
 
 window.addEventListener('load', () => {
 
@@ -182,45 +183,8 @@ window.addEventListener('load', () => {
             console.error('unhandled', event.data);
         }
     });
-
-    const tocItems = Array.from(document.querySelectorAll('nav.table-of-contents li')).map(e => {
-        const anchor = e.querySelector('a')?.getAttribute('href')?.substring(1);
-        if (anchor) {
-            const target = document.getElementById(anchor);
-            if (target) {
-                return {
-                    listItem: e,
-                    target: target,
-                };
-            }
-        }
-        throw new Error('invalid toc item');
+    setupTocTo(window, {
+        topPaddingPx: 100,
+        bottomPaddingPx: 100,
     });
-
-    const decorateTocItems = () => {
-        const windowTop = 100;
-        const windowBottom = window.innerHeight - 100;
-        tocItems.map((item, index) =>  {
-            const itemTop = 
-                item.target.getBoundingClientRect().top;
-            const itemBottom = // calc by top of next item
-                (index + 1 < tocItems.length)
-                    ? tocItems[index + 1].target.getBoundingClientRect().top
-                    : document.documentElement.scrollHeight;
-            const visible = 
-                (windowTop < itemTop && itemTop < windowBottom) || // top of target is visible
-                (windowTop < itemBottom  && itemBottom < windowBottom) || // bottom of target is visible
-                (itemTop <= windowTop && windowBottom <= itemBottom); // target is partially or entirely visible
-            if (visible) {
-                item.listItem.classList.add('visible');
-            } else {
-                item.listItem.classList.remove('visible');
-            }
-        });
-    };
-    decorateTocItems();
-    new ResizeObserver(decorateTocItems).observe(document.body);
-    window.addEventListener('resize', decorateTocItems);
-    window.addEventListener('scroll', decorateTocItems);
-
 });
