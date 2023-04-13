@@ -105,17 +105,20 @@
     }
 }
 
-.snippet.init .terminal-outer {
+.snippet .terminal-outer {
+    transition: all 0.1s linear 0ms;
+}
+
+.snippet:not(.output-exists) .terminal-outer {
     height: 0;
     opacity: 0;
     visibility: hidden;
 }
 
-.snippet:not(.init) .terminal-outer {
+.snippet.output-exists .terminal-outer {
     height: 20rem;
     opacity: 1;
     visibility: visible;
-    transition: all 0.1s linear 0ms;
 }
 
 .exit-status {

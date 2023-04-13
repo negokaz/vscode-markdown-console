@@ -34,6 +34,8 @@ export class SnippetState {
 
     public readonly exitCode: Signal<number | undefined> = signal(undefined);
 
+    public readonly outputExists: Signal<boolean> = signal(false);
+
     public readonly output: Signal<string | undefined> = signal('');
 
     public readonly outputHtml: string | undefined;
@@ -46,6 +48,9 @@ export class SnippetState {
             this.outputHtml = props.data.outputHtml;
             const data = props.data;
             batch(() => {
+                if (data.output.length !== 0) {
+                    this.outputExists.value = true;
+                }
                 this.output.value = data.output;
                 this.startDate.value = new Date(data.startDateTime);
                 this.endDate.value = new Date(data.endDateTime);
@@ -59,6 +64,7 @@ export class SnippetState {
 
     public writeToTerm(data: string): Promise<string> {
         if (this.webview) {
+            this.outputExists.value = true;
             const term = this.webview.term;
             const promise = new Promise<string>((resolve) => {
                 term.write(data, () => resolve(data));
@@ -72,6 +78,7 @@ export class SnippetState {
 
     public writelnToTerm(data: string): Promise<string> {
         if (this.webview) {
+            this.outputExists.value = true;
             const term = this.webview.term;
             const promise = new Promise<string>((resolve) => {
                 term.writeln(data, () => resolve(data));

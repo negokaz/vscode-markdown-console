@@ -23,6 +23,7 @@ export function Snippet({ state, attr, children }: Props) {
     const run = () => {
         if (state.webview) {
             batch(() => {
+                state.outputExists.value = false;
                 state.status.value = 'running';
                 state.endDate.value = undefined;
             });
@@ -91,6 +92,9 @@ export function Snippet({ state, attr, children }: Props) {
             } else {
                 classes.push('failed');
             }
+        }
+        if (state.outputExists.value) {
+            classes.push('output-exists');
         }
         return classes;
     });

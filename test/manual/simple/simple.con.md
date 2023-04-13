@@ -111,6 +111,18 @@ do
 done < <(seq 20)
 ```
 
+## 出力なし
+
+```
+#@cmd:[bash -c]
+true
+```
+
+```
+#@cmd:[bash -c]
+false
+```
+
 ## stdin 有効
 
 ```bash
@@ -164,4 +176,10 @@ set -ex
 printenv MDCON_WORKING_DIR
 # 設定ファイルがない場合、MDCON_WORKING_DIR と同一
 printenv MDCON_BASE_DIR
+```
+
+```
+@cmd:[bash -c]
+sleep 10
+echo hello
 ```
