@@ -13,7 +13,6 @@ import which from 'which';
 import { Config } from "../config/config";
 import { LogStorage } from "../storage/logStorage";
 import markdownVscResourceImage from "./plugin/markdownVscResourceImage";
-import uslug from 'uslug';
 
 type SettingsSchema = {
     "@cmd": string | string[] | undefined,
@@ -52,8 +51,6 @@ export class MarkdownEngine {
 
     private readonly snippetDeclarationPattern = /@cmd *:.+$/;
 
-    private readonly uslugify = (s: string): string => uslug(s);
-
     constructor(
         private readonly config: Config,
         logStorage: LogStorage,
@@ -65,8 +62,8 @@ export class MarkdownEngine {
         });
         this.md.use(markdownItSnippet());
         this.md.use(markdownVscResourceImage(this.config));
-        this.md.use(markdownItAnchor, { slugify: this.uslugify });
-        this.md.use(markdownItTocDoneRight, { placeholder: '', slugify: this.uslugify });
+        this.md.use(markdownItAnchor);
+        this.md.use(markdownItTocDoneRight, { placeholder: '' });
         this.webviewEnv = new MarkdownEngineEnv(new UiState(), logStorage, 'webview');
         this.snapshotEnv = new MarkdownEngineEnv(new UiState(), logStorage, 'snapshot');
     }
