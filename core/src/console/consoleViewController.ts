@@ -61,7 +61,7 @@ export class ConsoleViewController extends vscode.Disposable {
         console.log(event);
         if (event.switchPreview) {
             this.mode = 'preview';
-            await vscode.window.showTextDocument(this.document, vscode.ViewColumn.Active, true);
+            await vscode.commands.executeCommand('markdown-console.editWithPreview', this.document.uri);
             this.onRequestReloadConfigEmitter.fire();
         } else if (event.switchRunnable) {
             this.mode = 'runnable';

@@ -9,14 +9,6 @@ export class ConsoleViewManager {
         private readonly context: vscode.ExtensionContext,
     ) {}
 
-    public async tryShow(document: vscode.TextDocument): Promise<void> {
-        const key = document.uri.fsPath;
-        let maybeView = this.views.get(key);
-        if (maybeView) {
-            maybeView.show();
-        }
-    }
-
     public async openPreview(document: vscode.TextDocument): Promise<void> {
         const key = document.uri.fsPath;
         let maybeView = this.views.get(key);

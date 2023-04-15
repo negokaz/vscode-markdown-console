@@ -17,20 +17,17 @@ export function activate(context: vscode.ExtensionContext) {
             await consoleViewManager.activateConsole(document);
 		}),
 		vscode.commands.registerCommand('markdown-console.editWithPreview', async (uri: vscode.Uri) => {
-            const document = await vscode.workspace.openTextDocument(uri);
-            await vscode.window.showTextDocument(document, vscode.ViewColumn.Active, true);
-            await consoleViewManager.openPreview(document);
-		}),
-		vscode.window.onDidChangeActiveTextEditor(editor => {
-			if (editor && isMarkdownConsoleDocument(editor.document)) {
-				consoleViewManager.tryShow(editor.document);
-			}
+            const editorAlreadyOpened = vscode.window.visibleTextEditors.find(e => e.document.uri.fsPath === uri.fsPath);
+            if (editorAlreadyOpened) {
+                await vscode.window.showTextDocument(editorAlreadyOpened.document, editorAlreadyOpened.viewColumn);
+                await consoleViewManager.openPreview(editorAlreadyOpened.document);
+            } else {
+                const document = await vscode.workspace.openTextDocument(uri);
+                await vscode.window.showTextDocument(document, vscode.ViewColumn.One);
+                await consoleViewManager.openPreview(document);
+            }
 		}),
 	);
-}
-
-function isMarkdownConsoleDocument(document: vscode.TextDocument): Boolean {
-	return document.fileName.endsWith('.con.md');
 }
 
 // this method is called when your extension is deactivated
