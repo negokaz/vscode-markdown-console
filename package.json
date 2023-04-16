@@ -22,6 +22,7 @@
     "Other"
   ],
   "activationEvents": [
+    "onLanguage:markdown",
     "onCommand:markdown-console.openPreviewToTheSide",
     "onCommand:markdown-console.activateConsole",
     "onCommand:markdown-console.editWithPreview"
