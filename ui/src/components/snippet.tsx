@@ -27,10 +27,7 @@ export function Snippet({ state, attr, children }: Props) {
                 state.status.value = 'running';
                 state.endDate.value = undefined;
             });
-            state.webview.term.focus();
             state.webview.term.reset();
-        }
-        if (state.webview) {
             const event: ConsoleEvent = { 
                 startClicked: { 
                     snippetId: attr.id,
@@ -39,6 +36,7 @@ export function Snippet({ state, attr, children }: Props) {
                 } 
             };
             state.webview.vscodeApi.postMessage(event);
+            state.webview.term.focus();
         }
     };
 

@@ -106,19 +106,18 @@
 }
 
 .snippet .terminal-outer {
+    overflow: hidden;
     transition: all 0.1s linear 0ms;
 }
 
 .snippet:not(.output-exists) .terminal-outer {
     height: 0;
     opacity: 0;
-    visibility: hidden;
 }
 
 .snippet.output-exists .terminal-outer {
     height: 20rem;
     opacity: 1;
-    visibility: visible;
 }
 
 .exit-status {
