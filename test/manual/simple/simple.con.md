@@ -98,6 +98,62 @@ function main() {
 
 ![bg_network_dennou_sekai.jpg](https://3.bp.blogspot.com/-vF3FmP68kSY/WvQG-YjKKAI/AAAAAAABL3Q/vN_Pn4XbznQfUfzJl_R3eSurBJYGxun0QCLcBGAs/s600/bg_network_dennou_sekai.jpg)
 
+# メッセージ
+
+<div class="info">
+
+これは **補足情報** です
+
+</div>
+
+<details>
+
+```html
+<div class="info">
+
+これは **補足情報** です
+
+</div>
+```
+
+</details>
+
+<div class="warn">
+
+これは **警告** を知らせます
+
+</div>
+
+<details>
+
+```html
+<div class="warn">
+
+これは **警告** を知らせます
+
+</div>
+```
+
+</details>
+
+<div class="danger">
+
+**危険** があることを知らせます
+
+</div>
+
+<details>
+
+```html
+<div class="danger">
+
+**危険** があることを知らせます
+
+</div>
+```
+
+</details>
+
 # スニペット
 
 ## オプションなし

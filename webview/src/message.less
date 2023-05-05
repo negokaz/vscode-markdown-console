@@ -1,0 +1,50 @@
+
+.info {
+    .alert();
+    border-color: var(--mdconsole-info-message-foreground);
+}
+
+.info::before {
+    .alert-header();
+    content: 'INFO';
+    color: var(--mdconsole-info-message-foreground);
+}
+
+.warn {
+    .alert();
+    border-color: var(--mdconsole-warn-message-foreground);
+}
+
+.warn::before {
+    .alert-header();
+    content: 'WARNING';
+    color: var(--mdconsole-warn-message-foreground);
+}
+
+.danger {
+    .alert();
+    border-color: var(--mdconsole-danger-message-foreground);
+}
+
+.danger::before {
+    .alert-header();
+    content: 'DANGER';
+    color: var(--mdconsole-danger-message-foreground);
+}
+
+.alert-header() {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 120%;
+}
+
+.alert() {
+    margin: 1rem 0;
+	border-left-width: 5px;
+    border-left-style: solid;
+    background-color: var(--mdconsole-text-block-quote-background);
+    padding: 0.5rem 0.75rem;
+    p {
+        margin: 0.5rem 0 0 0;
+    }
+}
