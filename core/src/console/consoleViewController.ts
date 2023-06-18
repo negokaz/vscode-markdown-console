@@ -58,7 +58,9 @@ export class ConsoleViewController extends vscode.Disposable {
     }
 
     private async receiveWebviewMessage(event: ConsoleEvent): Promise<void> {
-        console.log(event);
+        if (this.context.extensionMode === vscode.ExtensionMode.Development) {
+            console.debug(event);
+        }
         if (event.switchPreview) {
             this.mode = 'preview';
             await vscode.commands.executeCommand('markdown-console.editWithPreview', this.document.uri);
@@ -73,7 +75,9 @@ export class ConsoleViewController extends vscode.Disposable {
             snippet.run().subscribe(e => this.receiveSnippetEvent(e));
             snippet.tryResize(event.startClicked.rows, event.startClicked.cols);
         } else if (event.userInput) {
-            console.log('userinput', event.userInput.data);
+            if (this.context.extensionMode === vscode.ExtensionMode.Development) {
+                console.debug('userInput', event.userInput.data);
+            }
             const snippet = this.snippetManager.get(event.userInput.snippetId);
             snippet.write(event.userInput.data);
         } else if (event.stopClicked) {
@@ -172,6 +176,7 @@ export class ConsoleViewController extends vscode.Disposable {
         const tokens = await this.parseMarkdown(this.document.getText());
         const renderingResult = await this.markdownEngine.renderWebview(tokens);
         this.snippetManager = await SnippetManager.initialize(tokens, this.config);
+        const debugging = this.context.extensionMode === vscode.ExtensionMode.Development;
         return `<!DOCTYPE html>
         <html class="webview">
             <head>
@@ -180,7 +185,7 @@ export class ConsoleViewController extends vscode.Disposable {
                 <link rel="stylesheet" href="${this.resourceUri('main.css')}" />
                 <script src="${this.resourceUri('webview.js')}"></script>
             </head>
-            <body class="console-${this.mode}">
+            <body class="console-${this.mode}${debugging ? ' debug' : ''}">
                 <div id="menu-margin"></div>
                 <div id="menu"></div>
                 <div id="content">

@@ -26,6 +26,8 @@ window.addEventListener('load', () => {
     const mode: Mode = 
         document.body.classList.contains('console-preview') ? 'preview' : 'runnable';
 
+    const debugging: boolean = document.body.classList.contains('debug');
+
     const language = window.navigator.language;
 
     const menuElement = document.getElementById('menu');
@@ -123,7 +125,9 @@ window.addEventListener('load', () => {
 
     window.addEventListener('message', event => {
         const consoleEvent: ConsoleEvent = event.data;
-        console.debug(consoleEvent);
+        if (debugging) {
+            console.debug(consoleEvent);
+        }
         if (consoleEvent.spawnFailed) {
             const snippetState = state.get(consoleEvent.spawnFailed.snippetId);
             snippetState.writelnToTerm(consoleEvent.spawnFailed.cause);
