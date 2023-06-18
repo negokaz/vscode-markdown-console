@@ -10,7 +10,10 @@
     "open-snapshot-folder": "フォルダを開く",
     "save-a-snapshot-was-successful": "スナップショット (HTML) の保存に成功しました。",
     "this-file-was-generated-by-markdown-console": "このファイルは <a href=\"https://marketplace.visualstudio.com/items?itemName=negokaz.markdown-console\">Markdown Console</a> によって生成されました",
+    "input-new-con-md-file-name": "Markdown Console: 新規作成するファイル名を入力してください",
     "command.open-preview-to-the-side": "Markdown Console: プレビューを開く",
     "command.activate-console": "Markdown Console: コンソールを有効化",
-    "command.edit-with-preview": "Markdown Console: プレビューしながら編集"
+    "command.edit-with-preview": "Markdown Console: プレビューしながら編集",
+    "command.generate-con-md": "新しい Markdown Console file (*.con.md) を作成",
+    "command.generate-markdown-console-yml": "markdown-console.yml を生成"
 }

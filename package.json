@@ -49,6 +49,14 @@
       {
         "command": "markdown-console.editWithPreview",
         "title": "%command.edit-with-preview%"
+      },
+      {
+        "command": "markdown-console.generateConMd",
+        "title": "%command.generate-con-md%"
+      },
+      {
+        "command": "markdown-console.generateMarkdownConsoleYml",
+        "title": "%command.generate-markdown-console-yml%"
       }
     ],
     "menus": {
@@ -74,6 +82,16 @@
           "command": "markdown-console.activateConsole",
           "when": "resourceFilename =~ /\\.con\\.md$/",
           "group": "navigation"
+        },
+        {
+          "command": "markdown-console.generateConMd",
+          "when": "explorerResourceIsFolder",
+          "group": "z_commands@1"
+        },
+        {
+          "command": "markdown-console.generateMarkdownConsoleYml",
+          "when": "explorerResourceIsFolder",
+          "group": "z_commands@2"
         }
       ]
     },
