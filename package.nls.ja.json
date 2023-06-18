@@ -9,5 +9,8 @@
     "open-snapshot": "開く",
     "open-snapshot-folder": "フォルダを開く",
     "save-a-snapshot-was-successful": "スナップショット (HTML) の保存に成功しました。",
-    "this-file-was-generated-by-markdown-console": "このファイルは <a href=\"https://marketplace.visualstudio.com/items?itemName=negokaz.markdown-console\">Markdown Console</a> によって生成されました"
+    "this-file-was-generated-by-markdown-console": "このファイルは <a href=\"https://marketplace.visualstudio.com/items?itemName=negokaz.markdown-console\">Markdown Console</a> によって生成されました",
+    "command.open-preview-to-the-side": "Markdown Console: プレビューを開く",
+    "command.activate-console": "Markdown Console: コンソールを有効化",
+    "command.edit-with-preview": "Markdown Console: プレビューしながら編集"
 }

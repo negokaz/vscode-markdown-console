@@ -32,7 +32,7 @@
     "commands": [
       {
         "command": "markdown-console.openPreviewToTheSide",
-        "title": "Markdown Console: Open Preview to the Side",
+        "title": "%command.open-preview-to-the-side%",
         "icon": {
           "light": "./icon/ui/light/preview.svg",
           "dark": "./icon/ui/dark/preview.svg"
@@ -40,7 +40,7 @@
       },
       {
         "command": "markdown-console.activateConsole",
-        "title": "Markdown Console: Activate Console",
+        "title": "%command.activate-console%",
         "icon": {
           "light": "./icon/ui/light/activate-console.svg",
           "dark": "./icon/ui/dark/activate-console.svg"
@@ -48,7 +48,7 @@
       },
       {
         "command": "markdown-console.editWithPreview",
-        "title": "Markdown Console: Edit with preview"
+        "title": "%command.edit-with-preview%"
       }
     ],
     "menus": {
