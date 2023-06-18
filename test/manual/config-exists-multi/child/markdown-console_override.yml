@@ -1,0 +1,6 @@
+env:
+    TEST: CHILD
+
+variable:
+    buzz:
+        bbb: b3

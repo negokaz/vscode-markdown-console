@@ -19,18 +19,18 @@ export class Config {
         if (configPath) {
             const basePath = vscode.Uri.file(path.dirname(configPath.fsPath));
             const config = fs.readFile(configPath.fsPath, 'utf-8').then(data => {
-                const parsed = yaml.parse(data) as ConfigSchema | null;
-                return parsed ? parsed : {} as ConfigSchema;
+                    const parsed = yaml.parse(data) as ConfigSchema | null;
+                    return parsed ? parsed : {} as ConfigSchema;
             });
-            const extraConfigPaths = await this.findExtraConfigFiles(basePath.fsPath);
+            const extraConfigPaths = await this.findExtraConfigFiles(documentDirectoryPath.fsPath, basePath.fsPath);
             const extraConfigs = Promise.all(
                 extraConfigPaths.map(async (p) => {
                     const data = fs.readFile(p.fsPath, 'utf-8');
-                    const parsed =  yaml.parse(await data) as ConfigSchema | null;
-                    return parsed ? parsed : {} as ConfigSchema;
+                        const parsed =  yaml.parse(await data) as ConfigSchema | null;
+                        return parsed ? parsed : {} as ConfigSchema;
                 })
             );
-            const allConfigs: ConfigSchema[] = 
+            const allConfigs: (ConfigSchema)[] = 
                 [await config].concat(await extraConfigs);
             const baseEnv = this.createBaseEnv(basePath, documentDirectoryPath);
             const envEntries: [string, string][] = 
@@ -73,18 +73,28 @@ export class Config {
         }
     }
 
-    private static async findExtraConfigFiles(basePath: string): Promise<vscode.Uri[]> {
-        return fastGlob(['markdown-console_*.yml'], { cwd: basePath }).then(paths => {
-            return paths.sort((a, b) => {
-                if (a < b) {
-                    return -1;
-                } else if (a > b) {
-                    return 1;
-                } else {
-                    return 0;
-                }
-            }).map(p => vscode.Uri.file(path.join(basePath, p)));
-        });
+    private static async findExtraConfigFiles(directoryPath: string, basePath: string): Promise<vscode.Uri[]> {
+        const globExtraConfigFile = (): Promise<vscode.Uri[]> => {
+            return fastGlob(['markdown-console_*.yml'], { cwd: directoryPath }).then(paths => {
+                return paths.sort((a, b) => {
+                    if (a < b) {
+                        return -1;
+                    } else if (a > b) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                }).map(p => vscode.Uri.file(path.join(directoryPath, p)));
+            });
+        };
+        if (directoryPath === basePath) {
+            return globExtraConfigFile();
+        } else {
+            const parentDir = path.dirname(directoryPath);
+            return this.findExtraConfigFiles(parentDir, basePath).then(paths => {
+                return globExtraConfigFile().then(extraPaths => paths.concat(extraPaths));
+            });
+        }   
     }
 
     private static createBaseEnv(basePath: vscode.Uri, workingDirectory: vscode.Uri): NodeJS.ProcessEnv {
