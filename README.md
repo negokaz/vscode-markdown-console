@@ -1,10 +1,8 @@
-# Markdown Console (Preview)
+# Markdown Console
 
 [![](https://img.shields.io/visual-studio-marketplace/v/negokaz.markdown-console.svg)](https://marketplace.visualstudio.com/items?itemName=negokaz.markdown-console)
 
 半自動化のためのドキュメンテーションツール
-
-⚠️ 本ツールは開発途中です。プロダクション利用は非推奨です。
 
 ![](docs/images/demo.gif)
 
