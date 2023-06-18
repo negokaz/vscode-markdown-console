@@ -14,6 +14,6 @@
     "command.open-preview-to-the-side": "Markdown Console: Open Preview to the Side",
     "command.activate-console": "Markdown Console: Activate Console",
     "command.edit-with-preview": "Markdown Console: Edit with preview",
-    "command.command.generate-con-md": "Create a new Markdown Console file (*.con.md)",
+    "command.generate-con-md": "Create a new Markdown Console file (*.con.md)",
     "command.generate-markdown-console-yml": "Generate markdown-console.yml"
 }
