@@ -5,3 +5,5 @@
 !markdown-console-yaml-schema.json
 !LICENSE
 !README.md
+!package.nls.json
+!package.nls.*.json

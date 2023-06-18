@@ -3,7 +3,7 @@
   "displayName": "Markdown Console",
   "description": "A documentation tool for semi-automatic operations",
   "icon": "icon/icon.png",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "publisher": "negokaz",
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
