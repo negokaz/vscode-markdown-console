@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as micromustache from 'micromustache';
+import open from 'open';
 import { promises as fs } from 'fs';
 import { MarkdownEngine } from '../markdown/markdownEngine';
 import { SnippetManager } from '../snippet/snippetManager';
@@ -220,10 +221,14 @@ export class ConsoleViewController extends vscode.Disposable {
         ).then((selection) => {
             switch (selection) {
                 case openSnapshotMessage:
-                    return vscode.env.openExternal(this.config.snapshotUri);
+                    // NOTE: vscode.env.openExternal() を使うと非ASCII文字を含むパスが正しく開けないため、代わりに open を使う
+                    // https://github.com/microsoft/vscode/issues/85930
+                    return open(this.config.snapshotUri.fsPath);
                 case openSnapshotFolderMessage:
                     const dir = vscode.Uri.file(path.dirname(this.config.snapshotUri.fsPath));
-                    return vscode.env.openExternal(dir);
+                    // NOTE: vscode.env.openExternal() を使うと非ASCII文字を含むパスが正しく開けないため、代わりに open を使う
+                    // https://github.com/microsoft/vscode/issues/85930
+                    return open(dir.fsPath);
             }
         });
     }
