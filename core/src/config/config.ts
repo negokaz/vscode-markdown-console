@@ -125,7 +125,7 @@ export class Config {
     }
 
     public get dataDirectory(): vscode.Uri {
-        return vscode.Uri.file(path.join(this.baseDirectry.fsPath, 'markdown-console'));
+        return vscode.Uri.file(path.join(this.baseDirectry.fsPath, '.markdown-console'));
     }
 
     public get dbUri(): vscode.Uri {
