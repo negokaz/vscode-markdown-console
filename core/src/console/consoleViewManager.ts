@@ -13,17 +13,16 @@ export class ConsoleViewManager {
         const key = document.uri.fsPath;
         let maybeView = this.views.get(key);
         if (maybeView) {
-            maybeView.show();
             await maybeView.render('preview');
-            return;
+            maybeView.show();
         } else {
-            maybeView = new ConsoleView(document, this.context);
+            maybeView = new ConsoleView('preview', document, this.context);
+            this.views.set(key, maybeView);
             this.context.subscriptions.push(maybeView);
             maybeView.onDidDispose(() => {
                 this.views.delete(key);
             });
-            this.views.set(key, maybeView);
-            return maybeView.open('preview'); 
+            await maybeView.render('preview');
         }
     }
 
@@ -31,17 +30,16 @@ export class ConsoleViewManager {
         const key = document.uri.fsPath;
         let maybeView = this.views.get(key);
         if (maybeView) {
-            maybeView.show();
             await maybeView.render('runnable');
-            return;
+            maybeView.show();
         } else {
-            maybeView = new ConsoleView(document, this.context);
+            maybeView = new ConsoleView('runnable', document, this.context);
+            this.views.set(key, maybeView);
             this.context.subscriptions.push(maybeView);
             maybeView.onDidDispose(() => {
                 this.views.delete(key);
             });
-            this.views.set(key, maybeView);
-            return maybeView.open('runnable'); 
+            await maybeView.render('runnable');
         }
     }
 }

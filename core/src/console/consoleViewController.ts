@@ -52,12 +52,6 @@ export class ConsoleViewController extends vscode.Disposable {
         this.webviewPanel.webview.html = await this.generateWebviewPreviewContent();
     }
 
-    public show(): void {
-        const viewColumn =
-            this.mode === 'preview' ? vscode.ViewColumn.Beside : undefined;
-        this.webviewPanel.reveal(viewColumn, true);
-    }
-
     private async receiveWebviewMessage(event: ConsoleEvent): Promise<void> {
         if (this.context.extensionMode === vscode.ExtensionMode.Development) {
             console.debug(event);
