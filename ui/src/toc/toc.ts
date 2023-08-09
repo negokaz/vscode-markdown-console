@@ -19,6 +19,17 @@ export function setupTocTo(window: Window, options: TocOptions) {
         throw new Error('invalid toc item');
     });
 
+    const setTocItemTitles = () => {
+        Array.from(document.querySelectorAll('nav.table-of-contents li a')).map(e => {
+            if (e instanceof HTMLAnchorElement) {
+                const title = e.textContent;
+                if (title) {
+                    e.setAttribute('title', title);
+                }
+            }
+        });
+    };
+
     const decorateTocItems = () => {
         const windowTop = options.topPaddingPx;
         const windowBottom = window.innerHeight - options.bottomPaddingPx;
@@ -40,6 +51,8 @@ export function setupTocTo(window: Window, options: TocOptions) {
             }
         });
     };
+
+    setTocItemTitles();
     decorateTocItems();
     new ResizeObserver(decorateTocItems).observe(document.body);
     window.addEventListener('resize', decorateTocItems);
