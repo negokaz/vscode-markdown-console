@@ -5,7 +5,15 @@ All notable changes to the "markdown-console" extension will be documented in th
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 ## [Unreleased]
-[Unreleased]: https://github.com/negokaz/vscode-markdown-console/compare/v0.8.1...main
+[Unreleased]: https://github.com/negokaz/vscode-markdown-console/compare/v0.9.0...main
+
+## [0.9.0] - 2023-08-16
+[0.9.0]: https://github.com/negokaz/vscode-markdown-console/releases/tag/v0.9.0
+
+### Changed
+
+- TOCアイテムのマウスオーバーで見切れているセクション名を確認できるように
+- スナップショット上のターミナル出力の折返し位置が画面表示と一致するように変更
 
 ## [0.8.1] - 2023-06-29
 [0.8.1]: https://github.com/negokaz/vscode-markdown-console/releases/tag/v0.8.1
