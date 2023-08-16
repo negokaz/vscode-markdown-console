@@ -86,7 +86,7 @@ export const Term = memo(({state, attr}: Props) => {
     return (
         <div class="terminal-outer">
             {
-                state.webview && mode === 'runnable'
+                state.webview
                     ? (
                         <div class="terminal-root" ref={ref => newTerm(ref)}></div>
                     )
