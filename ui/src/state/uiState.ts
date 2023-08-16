@@ -47,7 +47,7 @@ export class UiState {
         // Remove <div>...</span>[[<span> </span>]]</div>,
         // keep <div><span> </span></div>
         return html
-            .replaceAll(/ +(<\/span><\/div>)/g, ' $1')
-            .replaceAll(/(<\/span>)<span> +<\/span>(<\/div>)/g, '$1$2');
+            .replace(/ +(<\/span><\/div>)/g, ' $1')
+            .replace(/(<\/span>)<span> +<\/span>(<\/div>)/g, '$1$2');
     }
 }
