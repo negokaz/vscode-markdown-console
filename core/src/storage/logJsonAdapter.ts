@@ -10,7 +10,6 @@ export type LogEntry = {
     start: Date,
     end: Date,
     output: string,
-    outputHtml: string,
     exitCode: number,
 };
 
@@ -20,7 +19,6 @@ export type LogRawEntry = {
     start: string,
     end: string,
     output: string,
-    outputHtml: string,
     exitCode: number,
 };
 
@@ -59,7 +57,6 @@ export class LogJsonAdapter implements Adapter<LogSchema> {
             start: logEntry.start.toISOString(),
             end: logEntry.end.toISOString(),
             output: logEntry.output,
-            outputHtml: logEntry.outputHtml,
             exitCode: logEntry.exitCode,
         };
     }
@@ -71,7 +68,6 @@ export class LogJsonAdapter implements Adapter<LogSchema> {
             start: new Date(logRawEntry.start),
             end: new Date(logRawEntry.end),
             output: logRawEntry.output,
-            outputHtml: logRawEntry.outputHtml,
             exitCode: logRawEntry.exitCode,
         };
     }

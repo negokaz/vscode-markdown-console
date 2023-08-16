@@ -17,11 +17,12 @@ export function markdownItSnippet() {
             const attr = MarkdownEngine.tryExtractSnippetAttribute(token);
             if (attr && attr.success) {
                 const maybeLog = attr.success ? env.logStorage.data.get(attr.success.id) : undefined;
+                const maybeOutputHtml = env.snippetOutputHtmls.get(attr.success.id);
                 const model: SnippetModel = {
                     attr: attr,
                     data: maybeLog ? {
                         output: maybeLog.output,
-                        outputHtml: maybeLog.outputHtml,
+                        outputHtml: maybeOutputHtml ? maybeOutputHtml : '',
                         startDateTime: maybeLog.start.toISOString(),
                         endDateTime: maybeLog.end.toISOString(),
                         exitCode: maybeLog.exitCode,

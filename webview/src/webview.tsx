@@ -163,19 +163,10 @@ window.addEventListener('load', () => {
             const snippetState = state.get(consoleEvent.processCompleted.snippetId);
             snippetState.markComplete(processCompleted.exitCode, new Date(processCompleted.endDateTime)).then(() => {
                 if (snippetState.webview) {
-                    // Remove trailing spaces of each line
-                    const trimRight = (html: string) => {
-                        // Remove <div>...</span>[[<span> </span>]]</div>,
-                        // keep <div><span> </span></div>
-                        return html
-                            .replaceAll(/ +(<\/span><\/div>)/g, ' $1')
-                            .replaceAll(/(<\/span>)<span> +<\/span>(<\/div>)/g, '$1$2');
-                    };
                     const event: ConsoleEvent = {
                         termBufferDetermined: {
                             snippetId: processCompleted.snippetId,
                             bufferData: snippetState.webview.serializeAddon.serialize(),
-                            html: trimRight(snippetState.webview.serializeAddon.serializeAsHTML({includeGlobalBackground: true})),
                         }
                     };
                     vscode.postMessage(event);

@@ -88,7 +88,6 @@ export class ConsoleViewController extends vscode.Disposable {
             const termBufferDetermined = event.termBufferDetermined;
             this.logStorage.update(termBufferDetermined.snippetId, (data) => {
                 data.output = termBufferDetermined.bufferData;
-                data.outputHtml = termBufferDetermined.html;
                 return data;
             });
             this.logStorage.write();
@@ -233,7 +232,7 @@ export class ConsoleViewController extends vscode.Disposable {
         const css = fs.readFile(cssUri.fsPath);
         const scriptUri = vscode.Uri.file(path.join(this.context.extensionPath, 'dist', 'snapshot', 'snapshot.js'));
         const script = fs.readFile(scriptUri.fsPath);
-        const renderingResult = await this.markdownEngine.renderSnapshot(tokens);
+        const renderingResult = await this.markdownEngine.renderSnapshot(tokens, event.snippetData);
         return `
         <!DOCTYPE html>
         <html style="${HtmlUtil.escapeHtml(event.style)}">

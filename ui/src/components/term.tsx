@@ -59,6 +59,10 @@ export const Term = memo(({state, attr}: Props) => {
             } else {
                 term.open(ref);
             }
+            if (mode === 'preview') {
+                const hideCursorSequence = '\x1b[?25l';
+                term.write(hideCursorSequence);
+            }
             // trigger resizing term after 1 second after the last resizing
             let timerId: number | undefined = undefined;
             new ResizeObserver(() => {
@@ -86,7 +90,7 @@ export const Term = memo(({state, attr}: Props) => {
     return (
         <div class="terminal-outer">
             {
-                state.webview && mode === 'runnable'
+                state.webview
                     ? (
                         <div class="terminal-root" ref={ref => newTerm(ref)}></div>
                     )
