@@ -23,6 +23,7 @@ export function Menu({ vscodeApi, state }: Props) {
             saveSnapshotClicked: {
                 style: style ? style : '',
                 bodyClassList: Array.from(document.body.classList),
+                snippetData: state.extractSnippetData(),
             },
         };
         vscodeApi.postMessage(event);

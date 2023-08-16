@@ -40,7 +40,6 @@ export class LogStorage {
                     start: new Date(0),
                     end: new Date(0),
                     output: '',
-                    outputHtml: '',
                     exitCode: -1,
                 };
                 this.db.data.set(snippetId, handler(entry));

@@ -111,8 +111,6 @@ export type TermBufferDetermined = {
     snippetId: string,
 
     bufferData: string,
-
-    html: string,
 };
 
 export type SaveSnapshotClicked = {
@@ -120,6 +118,15 @@ export type SaveSnapshotClicked = {
     style: string,
 
     bodyClassList: string[],
+
+    snippetData: SnippetData[],
+};
+
+export type SnippetData = {
+
+    id: string,
+
+    outputHtml: string,
 };
 
 export type OpenLink = {

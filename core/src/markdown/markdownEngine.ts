@@ -2,7 +2,7 @@ import MarkdownIt = require("markdown-it");
 import Token = require("markdown-it/lib/token");
 import markdownItAnchor from "markdown-it-anchor";
 import markdownItTocDoneRight from "markdown-it-toc-done-right";
-import { MarkdownEngineEnv } from "./markdownEngineEnv";
+import { MarkdownEngineEnvBuilder, MarkdownEngineEnv } from "./markdownEngineEnv";
 import { markdownItSnippet } from "./plugin/markdownItSnippet";
 import * as crypto from 'crypto';
 import * as rjson from 'really-relaxed-json';
@@ -13,6 +13,7 @@ import which from 'which';
 import { Config } from "../config/config";
 import { LogStorage } from "../storage/logStorage";
 import markdownVscResourceImage from "./plugin/markdownVscResourceImage";
+import { SnippetData } from "@ui/model/consoleEvent";
 
 type SettingsSchema = {
     "@cmd": string | string[] | undefined,
@@ -45,9 +46,9 @@ export class MarkdownEngine {
 
     private readonly md: MarkdownIt;
 
-    private readonly webviewEnv: MarkdownEngineEnv;
+    private readonly webviewEnvBuilder: MarkdownEngineEnvBuilder;
 
-    private readonly snapshotEnv: MarkdownEngineEnv;
+    private readonly snapshotEnvBuilder: MarkdownEngineEnvBuilder;
 
     private readonly snippetDeclarationPattern = /@cmd *:.+$/;
 
@@ -64,26 +65,28 @@ export class MarkdownEngine {
         this.md.use(markdownVscResourceImage(this.config));
         this.md.use(markdownItAnchor);
         this.md.use(markdownItTocDoneRight, { placeholder: '' });
-        this.webviewEnv = new MarkdownEngineEnv(new UiState(), logStorage, 'webview');
-        this.snapshotEnv = new MarkdownEngineEnv(new UiState(), logStorage, 'snapshot');
+        this.webviewEnvBuilder = new MarkdownEngineEnvBuilder(new UiState(), logStorage, 'webview');
+        this.snapshotEnvBuilder = new MarkdownEngineEnvBuilder(new UiState(), logStorage, 'snapshot');
     }
 
     public async parse(markdown: string): Promise<Token[]> {
-        const tokens = this.md.parse(markdown, this.webviewEnv);
+        const tokens = this.md.parse(markdown, this.webviewEnvBuilder);
         return this.decorateTokens(tokens);
     }
 
     public async renderWebview(tokens: Token[]): Promise<RenderingResult> {
+        const env = this.webviewEnvBuilder.build();
         return {
-            bodyHtml: this.md.renderer.render(tokens, this.md.options, this.webviewEnv),
-            tocHtml: this.generateToc(this.webviewEnv),
+            bodyHtml: this.md.renderer.render(tokens, this.md.options, env),
+            tocHtml: this.generateToc(env),
         };
     }
 
-    public async renderSnapshot(tokens: Token[]): Promise<RenderingResult> {
+    public async renderSnapshot(tokens: Token[], snippets: SnippetData[]): Promise<RenderingResult> {
+        const env = this.snapshotEnvBuilder.build(snippets);
         return {
-            bodyHtml: this.md.renderer.render(tokens, this.md.options, this.snapshotEnv),
-            tocHtml: this.generateToc(this.snapshotEnv),
+            bodyHtml: this.md.renderer.render(tokens, this.md.options, env),
+            tocHtml: this.generateToc(env),
         };
     }
 
