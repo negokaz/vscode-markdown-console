@@ -62,7 +62,7 @@ export class SnippetState {
 
     private writings: Promise<string>[] = [];
 
-    public writeToTerm(data: string): Promise<string> {
+    public writeStdoutToTerm(data: string): Promise<string> {
         if (this.webview) {
             this.outputExists.value = true;
             const term = this.webview.term;
@@ -72,11 +72,11 @@ export class SnippetState {
             this.writings.push(promise);
             return promise;
         } else {
-            return new Promise<string>((resolve) => resolve(''));
+            return Promise.resolve(data);
         }
     }
 
-    public writelnToTerm(data: string): Promise<string> {
+    public writelnToTerm(data: string): void {
         if (this.webview) {
             this.outputExists.value = true;
             const term = this.webview.term;
@@ -84,14 +84,11 @@ export class SnippetState {
                 term.writeln(data, () => resolve(data));
             });
             this.writings.push(promise);
-            return promise;
-        } else {
-            return new Promise<string>((resolve) => resolve(''));
         }
     }
 
     public markComplete(exitCode: number, endDate: Date): Promise<void> {
-        const result = Promise.all(this.writings).then(() => {
+        const result = this.writingCompleted().then(() => {
             batch(() => {
                 this.endDate.value = endDate;
                 this.exitCode.value = exitCode;
@@ -100,5 +97,21 @@ export class SnippetState {
         });
         this.writings = [];
         return result;
+    }
+    
+    public resizeTerm() {
+        if (this.webview) {
+            const webview = this.webview;
+            this.writingCompleted().then(() => {
+                const serializedData = webview.serializeAddon.serialize();
+                webview.term.reset();
+                webview.fitAddon.fit();
+                webview.term.write(serializedData);
+            });
+        }
+    }
+
+    private writingCompleted(): Promise<string[]> {
+        return Promise.all(this.writings);
     }
 }

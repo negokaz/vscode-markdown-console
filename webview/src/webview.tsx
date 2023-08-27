@@ -137,7 +137,7 @@ window.addEventListener('load', () => {
         } else if (consoleEvent.stdoutProduced) {
             const stdoutProduced = consoleEvent.stdoutProduced;
             const snippetState = state.get(stdoutProduced.snippetId);
-            snippetState.writeToTerm(consoleEvent.stdoutProduced.data).then((data) => {
+            snippetState.writeStdoutToTerm(consoleEvent.stdoutProduced.data).then((data) => {
                 const event: ConsoleEvent = {
                     dataConsumed: {
                         snippetId: stdoutProduced.snippetId,
@@ -149,7 +149,7 @@ window.addEventListener('load', () => {
         } else if (consoleEvent.stderrProduced) {
             const stderrProduced = consoleEvent.stderrProduced;
             const snippetState = state.get(consoleEvent.stderrProduced.snippetId);
-            snippetState.writeToTerm(consoleEvent.stderrProduced.data).then((data) => {
+            snippetState.writeStdoutToTerm(consoleEvent.stderrProduced.data).then((data) => {
                 const event: ConsoleEvent = {
                     dataConsumed: {
                         snippetId: stderrProduced.snippetId,

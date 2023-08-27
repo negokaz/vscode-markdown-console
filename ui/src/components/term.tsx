@@ -69,19 +69,8 @@ export const Term = memo(({state, attr}: Props) => {
                 if (timerId) {
                     window.clearTimeout(timerId);
                 }
-                timerId = window.setTimeout(() => resizeTerm(), 100);
+                timerId = window.setTimeout(() => state.resizeTerm(), 100);
             }).observe(ref);
-        }
-    };
-
-    const resizeTerm = () => {
-        if (state.webview) {
-            const data = state.webview.serializeAddon.serialize();
-            state.webview.term.reset();
-            state.webview.fitAddon.fit();
-            if (data.trimStart().length !== 0) {
-                state.webview.term.write(data);
-            }
         }
     };
 
