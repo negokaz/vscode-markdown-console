@@ -5,7 +5,18 @@ All notable changes to the "markdown-console" extension will be documented in th
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 ## [Unreleased]
-[Unreleased]: https://github.com/negokaz/vscode-markdown-console/compare/v0.9.0...main
+[Unreleased]: https://github.com/negokaz/vscode-markdown-console/compare/v0.10.0...main
+
+## [0.10.0] - 2023-08-28
+[0.10.0]: https://github.com/negokaz/vscode-markdown-console/releases/tag/v0.10.0
+
+### Changed
+
+- コンテンツが編集されたときに実行可能なコンソール画面をリロードできるように
+
+### Fixed
+
+- コマンド実行中に画面をリサイズしてもターミナル出力が欠落しづらいように修正
 
 ## [0.9.0] - 2023-08-16
 [0.9.0]: https://github.com/negokaz/vscode-markdown-console/releases/tag/v0.9.0
