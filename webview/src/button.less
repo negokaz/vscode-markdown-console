@@ -31,6 +31,14 @@ a.button {
     }
 }
 
+a.button.button-disabled {
+    cursor: default;
+    
+    &:hover {
+        background-color: unset;
+    }
+}
+
 a.button.highlight {
 
     color: var(--mdconsole-highlighted-button-foreground);
