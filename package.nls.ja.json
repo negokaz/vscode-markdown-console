@@ -1,5 +1,6 @@
 {
     "edit": "編集",
+    "reload": "再読み込み",
     "activate-console": "コンソールを有効化",
     "save-snapshot": "スナップショット (html) を保存",
     "run": "Run",

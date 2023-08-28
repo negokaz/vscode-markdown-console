@@ -83,8 +83,8 @@ export class ConsoleView extends vscode.Disposable {
         const logStorage = LogStorage.load(config);
         this.controller = new ConsoleViewController(mode, await snippetManager, this.webviewPanel, document, config, await logStorage, this.context);
         this.controller.render();
-        this.controller.onRequestReloadConfig(async () => {
-            await this.render('preview');
+        this.controller.onRequestReloadConfig(async mode => {
+            await this.render(mode);
         });
     }
     

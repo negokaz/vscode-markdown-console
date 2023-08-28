@@ -43,6 +43,13 @@ export function Menu({ vscodeApi, state }: Props) {
         vscodeApi.postMessage(event);
     };
 
+    const reloadRunnablePage = () => {
+        const event: ConsoleEvent = {
+            reloadRunnablePage: {},
+        };
+        vscodeApi.postMessage(event);
+    };
+
     switch(mode) {
         case 'preview':
             return (
@@ -58,6 +65,11 @@ export function Menu({ vscodeApi, state }: Props) {
                         state.dirty.value
                             ? <a class="button highlight" onClick={switchPreview}><i class="icon-edit" />{messages.get('edit')}<span>*</span></a>
                             : <a class="button" onClick={switchPreview}><i class="icon-edit" />{messages.get('edit')}</a>
+                    }
+                    {
+                        state.dirty.value
+                            ? <a class="button highlight" onClick={reloadRunnablePage}><i class="icon-refresh" />{messages.get('reload')}</a>
+                            : <a class="button button-disabled"><i class="icon-refresh" />{messages.get('reload')}</a>
                     }
                     <a class="button" onClick={saveSnapshot}><i class="icon-camera" />{messages.get('save-snapshot')}</a>
                 </>

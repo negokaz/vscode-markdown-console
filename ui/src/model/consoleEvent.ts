@@ -2,6 +2,7 @@
 export type ConsoleEvent = {
         switchPreview?: SwitchPreview,
         switchRunnable?: SwitchRunnable,
+        reloadRunnablePage?: ReloadRunnablePage,
         copyText?: CopyText,
         startClicked?: StartClicked,
         processStarted?: ProcessStarted,
@@ -24,6 +25,10 @@ export type SwitchPreview = {
 };
 
 export type SwitchRunnable = {
+
+};
+
+export type ReloadRunnablePage = {
 
 };
 

@@ -22,7 +22,7 @@ export class ConsoleViewController extends vscode.Disposable {
 
     private readonly onDisposeEmitter: vscode.EventEmitter<void> = new vscode.EventEmitter();
 
-    private readonly onRequestReloadConfigEmitter: vscode.EventEmitter<void> = new vscode.EventEmitter();
+    private readonly onRequestReloadConfigEmitter: vscode.EventEmitter<ConsoleViewMode> = new vscode.EventEmitter();
 
     private readonly disposable: vscode.Disposable[] = [];
 
@@ -59,10 +59,13 @@ export class ConsoleViewController extends vscode.Disposable {
         if (event.switchPreview) {
             this.mode = 'preview';
             await vscode.commands.executeCommand('markdown-console.editWithPreview', this.document.uri);
-            this.onRequestReloadConfigEmitter.fire();
+            this.onRequestReloadConfigEmitter.fire(this.mode);
         } else if (event.switchRunnable) {
             this.mode = 'runnable';
             this.webviewPanel.webview.html = await this.generateWebviewPreviewContent();
+        } else if (event.reloadRunnablePage) {
+            this.mode = 'runnable';
+            this.onRequestReloadConfigEmitter.fire(this.mode);
         } else if (event.copyText) {
             await vscode.env.clipboard.writeText(event.copyText.text.trim());
         } else if (event.startClicked) {
@@ -153,7 +156,7 @@ export class ConsoleViewController extends vscode.Disposable {
                             clearTimeout(this.configReloadTimeout);
                         }
                         this.configReloadTimeout = setTimeout(() => {
-                            this.onRequestReloadConfigEmitter.fire();
+                            this.onRequestReloadConfigEmitter.fire(this.mode);
                         }, 500);
                     return;
                 case 'runnable':
@@ -270,7 +273,7 @@ export class ConsoleViewController extends vscode.Disposable {
         await vscode.commands.executeCommand('vscode.open', uri);
     }
 
-    public get onRequestReloadConfig(): vscode.Event<void> {
+    public get onRequestReloadConfig(): vscode.Event<ConsoleViewMode> {
         return this.onRequestReloadConfigEmitter.event;
     }
 
