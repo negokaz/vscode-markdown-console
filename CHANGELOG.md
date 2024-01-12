@@ -5,7 +5,14 @@ All notable changes to the "markdown-console" extension will be documented in th
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 ## [Unreleased]
-[Unreleased]: https://github.com/negokaz/vscode-markdown-console/compare/v0.10.0...main
+[Unreleased]: https://github.com/negokaz/vscode-markdown-console/compare/v0.10.1...main
+
+## [0.10.1] - 2024-01-12
+[0.10.1]: https://github.com/negokaz/vscode-markdown-console/releases/tag/v0.10.1
+
+### Fixed
+
+- VSCode の最新版でスニペットの背景がハイライトされて見づらくなる問題を修正
 
 ## [0.10.0] - 2023-08-28
 [0.10.0]: https://github.com/negokaz/vscode-markdown-console/releases/tag/v0.10.0
