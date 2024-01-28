@@ -5,7 +5,14 @@ All notable changes to the "markdown-console" extension will be documented in th
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 ## [Unreleased]
-[Unreleased]: https://github.com/negokaz/vscode-markdown-console/compare/v0.10.1...main
+[Unreleased]: https://github.com/negokaz/vscode-markdown-console/compare/v0.10.2...main
+
+## [0.10.2] - 2024-01-28
+[0.10.2]: https://github.com/negokaz/vscode-markdown-console/releases/tag/v0.10.2
+
+### Fixed
+
+- スニペットの余白を調整
 
 ## [0.10.1] - 2024-01-12
 [0.10.1]: https://github.com/negokaz/vscode-markdown-console/releases/tag/v0.10.1
