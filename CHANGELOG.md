@@ -5,7 +5,14 @@ All notable changes to the "markdown-console" extension will be documented in th
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 ## [Unreleased]
-[Unreleased]: https://github.com/negokaz/vscode-markdown-console/compare/v0.10.2...main
+[Unreleased]: https://github.com/negokaz/vscode-markdown-console/compare/v0.10.3...main
+
+## [0.10.3] - 2024-11-30
+[0.10.3]: https://github.com/negokaz/vscode-markdown-console/releases/tag/v0.10.3
+
+### Fixed
+
+- 新しいバージョンの VSCode で拡張の読み込みに失敗する問題を解消 [#6](https://github.com/negokaz/vscode-markdown-console/issues/6)
 
 ## [0.10.2] - 2024-01-28
 [0.10.2]: https://github.com/negokaz/vscode-markdown-console/releases/tag/v0.10.2
