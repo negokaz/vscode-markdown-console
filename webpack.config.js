@@ -22,8 +22,6 @@ const extension = {
     // the vscode-module is created on-the-fly and must be excluded.
     // Add other modules that cannot be webpack'ed, 📖 -> https://webpack.js.org/configuration/externals/
     vscode: 'commonjs vscode',
-    // Use node-pty embedded in vscode since node-pty contains a binary module that depends on the environment
-    'node-pty': 'var require.main.require("node-pty")', 
     // vscode-webview only enable in webview
     'vscode-webview': 'var void 0',
     // xterm only enable in webview
