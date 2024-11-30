@@ -3,18 +3,21 @@ import { Observable } from "rxjs";
 import * as os from 'os';
 import * as childProcess from "child_process";
 import * as path from 'path';
-import * as pty from 'node-pty';
+import type * as NodePty from 'node-pty';
 import * as iconv from 'iconv-lite';
 import { Snippet } from "./snippet";
 import { Config } from "../config/config";
+import * as vscodeModule from "../util/vscodeModule";
 
 type State = 'init' | 'running' | 'killed';
+
+const pty = vscodeModule.load('node-pty') as typeof NodePty;
 
 export class PtySnippet implements Snippet {
 
     private state: State = 'init';
 
-    private ptyProcess: pty.IPty | undefined = undefined;
+    private ptyProcess: NodePty.IPty | undefined = undefined;
 
     public constructor(
         private readonly id: string,
